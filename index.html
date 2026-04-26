@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Universal Studio | Artist & Strum Sync</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/soundfont-player@0.12.0/dist/soundfont-player.min.js"></script>
+</head>
+<body>
+
+<div class="hud">
+    <div class="status-lcd">
+        <div id="syncType">SYSTEM READY</div>
+        <div id="syncStatus" style="font-size: 10px; opacity: 0.6;">LOCAL CACHE ACTIVE</div>
+    </div>
+    <div class="tempo-hud">
+        <div class="bpm-text"><span id="bpmVal">120</span> BPM</div>
+        <div class="visualizer">
+            <div class="tick"></div><div class="tick"></div><div class="tick"></div><div class="tick"></div>
+        </div>
+    </div>
+</div>
+
+<div class="console">
+    <div class="unit">
+        <label>INSTANT ARTIST SYNC</label>
+        <input type="text" id="artistInput" placeholder="Try 'Kurt' or 'Ed'..." oninput="fastSync()">
+    </div>
+    <div class="unit">
+        <label>STRUM PATTERN (D U X)</label>
+        <input type="text" id="patternInput" value="D D U U D" oninput="currentPattern = this.value">
+    </div>
+    <div class="unit">
+        <label>TEMPO & ENGINE</label>
+        <input type="range" min="40" max="220" value="120" oninput="bpm=this.value; document.getElementById('bpmVal').innerText=this.value">
+        <select id="instSelect" onchange="initAudio()">
+            <option value="electric_guitar_clean">Electric Guitar</option>
+            <option value="acoustic_guitar_nylon">Acoustic Guitar</option>
+        </select>
+    </div>
+</div>
+
+<div class="pedalboard">
+    <div id="p-dist" class="pedal">BAND DRIVE</div>
+    <div id="p-verb" class="pedal">SOLO REVERB</div>
+</div>
+
+<div class="stage">
+    <div class="piano-frame" id="piano"></div>
+</div>
+
+<script src="studio.js"></script>
+</body>
+</html>
+
